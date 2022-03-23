@@ -25,7 +25,7 @@ function start(){
                name: "choice",
                choices: [
                    "View all Employees",
-                   "View by Roles",
+                   "View All Roles",
                    "View All Departments",
                    "Update Employee",
                    "Add Employee",
@@ -76,6 +76,13 @@ function viewAllEmployees() {
 
 function viewAllDept() {
     connection.query("SELECT * FROM department;", function(err, data) {
+        console.table(data)
+        start();
+    })
+}
+
+function viewAllRoles() {
+    connection.query("SELECT * FROM roles;", function(err, data) {
         console.table(data)
         start();
     })
