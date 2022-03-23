@@ -23,7 +23,7 @@ SO THAT I can organize and plan my business
 
 -Node.js: This primarily used for non-blocking, event-driven servers, due to its single-threaded nature
 
--Javascript
+
 
 ## Screenshot
 
