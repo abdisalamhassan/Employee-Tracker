@@ -66,6 +66,14 @@ function start(){
       });
 }
 
+function viewAllEmployees() {
+    connection.query("SELECT e.first_name AS First, e.last_name AS Last,e.role AS Role, r.salary AS Salary,", function(err, results) {
+        if(err) throw err;
+        console.table(data)
+        start();
+    })
+}
+
 function viewAllDept() {
     connection.query("SELECT * FROM department;", function(err, data) {
         console.table(data)
@@ -99,7 +107,7 @@ function addDept(){
        })
 }
 
-function addEmploeeRole(){
+function addEmployee(){
     connection.query("SELECT * FROM role", function(err, results){
         if(err) throw err;
         inquirer.prompt([
@@ -109,13 +117,14 @@ function addEmploeeRole(){
                 message: "Please enter employee first name"
             },
             {
-                name: "LastName",
+                name: "lastName",
                 type: "input",
                 message: "Enter employee's last name",
             },
             {
                 name: "role",
-                type: "list",
+                type: "input",
+                message: "Add employee role",
                 choices: function(value){
                         if(isNaN(value)=== false){
                             return true;

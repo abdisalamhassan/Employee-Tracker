@@ -10,11 +10,11 @@ VALUES('Accounting'),
 
 INSERT INTO role(title, salary, department_id)
 VALUES('Sales Leader', $95000, 1),
-('Accounting', $110000, 1),
-('Marketing ', $80000, 2),
-('Engineering', $115000, 2),
-('Lawyer', $97000, 3),
-('Secretary', $57000, 3);
+('Accounting Manager', $110000, 1),
+('Marketing Manager ', $80000, 2),
+('Engineering Project Manager', $115000, 2),
+('CFO', $97000, 3),
+('Office Supernindent', $57000, 3);
 
 INSERT INTO employee(first_name, last_name, role_id, manager_id)
 VALUES('Mako', 'Mori', 1, null),
