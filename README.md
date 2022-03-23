@@ -27,6 +27,14 @@ SO THAT I can organize and plan my business
 
 ## Screenshot
 
+<img width="1440" alt="Screen Shot 2022-03-23 at 11 58 46 AM" src="https://user-images.githubusercontent.com/95972020/159756743-9ae3f6b9-702a-4b5f-97d6-e32ae3374c20.png">
+
+<img width="1440" alt="Screen Shot 2022-03-23 at 11 58 17 AM" src="https://user-images.githubusercontent.com/95972020/159756887-27cd8529-f3fb-4c1e-9c4f-b403bb1db9bf.png">
+
+<img width="1440" alt="Screen Shot 2022-03-23 at 11 57 53 AM" src="https://user-images.githubusercontent.com/95972020/159756936-aa9d65fb-9e6d-4b40-b977-8a93010be11b.png">
+
+
+
 
 ## Author
 Created by Abdi Hassan
