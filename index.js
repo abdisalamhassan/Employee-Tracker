@@ -1,18 +1,18 @@
 const inquirer = require ("inquirer");
-const mysql = require ("mysql");
-
+const Choices = require("inquirer/lib/objects/choices");
+const mysql = require ("mysql2");
+require('console.table');
 
 const connection = mysql.createConnection({
- host: "Localhost",
- port: 3000,
+ host: "localhost",
+ port: 3306,
  user: "root",
- password: "password",
  database: "employee_trackerDB"
 });
 
 connection.connect(function(err) {
     if(err) throw err;
-    console.log("SQL is Connected");
+    console.log("mySQL is Connected");
 
     start();
 })
@@ -26,7 +26,7 @@ function start(){
                choices: [
                    "View all Employees",
                    "View by Roles",
-                   "View by Departments",
+                   "View All Departments",
                    "Update Employee",
                    "Add Employee",
                    "Add Role",
@@ -34,7 +34,7 @@ function start(){
                ]
            }
       ]).then(function (answer) {
-        switch (answer.mainMenu) {
+        switch (answer.choice) {
           case "View All Employees":
             viewAllEmployees();
             break;
@@ -66,27 +66,32 @@ function start(){
       });
 }
 
+function viewAllDept() {
+    connection.query("SELECT * FROM department;", function(err, data) {
+        console.table(data)
+        start();
+    })
+}
+
 function addDept(){
     inquirer
        .prompt([
            {
-               type: "list",
-               name: "view",
-               message: "select one to view:"
-               choices: ["All Employees", "By department", "By role"]
+               type: "input",
+               name: "departmentName",
+               message: "What is the name of the new department?"
            }
        ]).then(function(answer){
            connection.query(
-               "INSERT INTO role SET ?",
+               "INSERT INTO department SET ?",
             {
-                title: answer.role,
-                salary: answer.salary,
-                department_id: answer.department_id
+                name: answer.departmentName
             },
             function(err){
                 if(err) throw err;
                 console.log("_____________________________");
-                console.log("Employee Roles updated with" + answer.role);
+                // console.log("New Department added:" + answer.departmentName);
+                console.log(`New Department added: ${answer.departmentName}`);
                 console.log("______________________________");
                 start();
             }
@@ -111,15 +116,13 @@ function addEmploeeRole(){
             {
                 name: "role",
                 type: "list",
-                choices: function(){
-                    choices: function(value){
+                choices: function(value){
                         if(isNaN(value)=== false){
                             return true;
                         }
                         return false;
-                    }
-                    return false;
-                },
+                    },
+                   
                 message: "Enter manager ID",
                 default: "1"
             }
@@ -194,10 +197,25 @@ function updateEmployee(){
                     default: "1"
                 }
             ])
-            })
-        })
-       }
-    )
+            .then(function(answer){
+                console.log(answer);
+                console.log(saveName);
+                connection.query("UPDATE employee SET ? WHERE last_name = ?",
+                [
+                    {
+                        role_id: answer.role,
+                        manager_id: answer.manager
+                    }, saveName
+                ],
+                ),
+                console.log("_______________________________");
+                console.log("Employee update");
+                console.log("________________________________");
+                start();
+            });
+            });
+        });
+       });
 }
 
   
